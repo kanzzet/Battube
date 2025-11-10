@@ -1,0 +1,40 @@
+# Nama workflow yang akan tampil di tab Actions
+name: Build Android APK
+
+# Kapan workflow ini dijalankan?
+# 'push': Setiap kali ada push ke branch manapun
+on: [push]
+
+jobs:
+  build:
+    # Menggunakan OS Ubuntu terbaru sebagai "komputer" virtual
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Mengambil kode Anda dari repository
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # 2. Mengatur lingkungan Java (JDK) yang diperlukan untuk Android
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. (PENTING) Memberi izin eksekusi pada file gradlew
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      # 4. Menjalankan perintah build untuk membuat APK debug
+      #    Ini sama dengan yang Anda jalankan di terminal
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
+
+      # 5. Mengunggah file APK yang sudah jadi sebagai "Artifact"
+      #    Supaya Anda bisa men-download-nya
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk # Nama file unduhan Anda nanti
+          path: app/build/outputs/apk/debug/app-debug.apk
