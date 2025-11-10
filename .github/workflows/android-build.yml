@@ -22,13 +22,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3. (PENTING) Memberi izin eksekusi pada file gradlew
+      # 3. Memberi izin eksekusi pada file gradlew
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       # 4. Menjalankan perintah build untuk membuat APK debug
-      #    Ini sama dengan yang Anda jalankan di terminal
       - name: Build with Gradle
+        # Menambahkan variabel dummy untuk menghindari error 'null'
+        # Ini aman karena kita hanya build 'debug'
+        env:
+          RELEASE_STORE_FILE: "dummy.jks"
+          RELEASE_STORE_PASSWORD: "dummypassword"
+          RELEASE_KEY_ALIAS: "dummyalias"
+          RELEASE_KEY_PASSWORD: "dummypassword"
         run: ./gradlew assembleDebug
 
       # 5. Mengunggah file APK yang sudah jadi sebagai "Artifact"
