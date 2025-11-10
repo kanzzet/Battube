@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "app.rutube.clayza"
+    namespace = "app.battube.kanz"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "app.rutube.clayza"
+        applicationId = "app.battube.kanz"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
