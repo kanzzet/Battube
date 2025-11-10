@@ -1,4 +1,4 @@
-package app.rutube.clayza
+package app.battube.kanz
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -37,7 +37,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
-import app.rutube.clayza.databinding.ActivityMainBinding
+import app.battube.kanz.databinding.ActivityMainBinding
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.net.URISyntaxException
@@ -470,7 +470,7 @@ class MainActivity : AppCompatActivity() {
         var HOME_IMG_URL = ${jsonString(homeImageDataUrl)};
         var GAP_PX = 48;
 
-        var HOME_EMPTY_TITLE = "Selamat Datang di RuTube";
+        var HOME_EMPTY_TITLE = "Selamat Datang di battube";
         var HOME_EMPTY_SUBTITLE = "Di sini tidak ada drama. Hanya ada oshi kamu yang sudah terminated karena drama 😔💚";
 
         if (!document.getElementById('cz-logo-hide-native')) {
@@ -541,7 +541,7 @@ class MainActivity : AppCompatActivity() {
               headerLogo.src = LOGO_URL;
               headerLogo.dataset.czReplaced = '1';
             }
-            headerLogo.alt = 'RuTube';
+            headerLogo.alt = 'battube';
             headerLogo.style.height = '20px';
             headerLogo.style.width  = 'auto';
             headerLogo.style.maxWidth = '100px';
@@ -834,7 +834,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             Log.d("AdBlock", "Loaded ${adBlockList.size} domains from blocklist")
-            Toast.makeText(this, "Selamat Datang Di RuTube", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Selamat Datang Di battube", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.w("AdBlock", "No blocklist.txt, using built-ins")
             adBlockList.addAll(builtInPatterns.map { it.lowercase() })
